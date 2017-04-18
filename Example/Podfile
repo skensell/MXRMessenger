@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MXRMessenger_Example' do
+  pod 'MXRMessenger', :path => '../'
+
+  target 'MXRMessenger_Tests' do
+    inherit! :search_paths
+
+    pod 'Kiwi'
+  end
+end
