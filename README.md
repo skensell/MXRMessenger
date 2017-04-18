@@ -1,6 +1,6 @@
 # MXRMessenger
 
-[![CI Status](http://img.shields.io/travis/Scott Kensell/MXRMessenger.svg?style=flat)](https://travis-ci.org/Scott Kensell/MXRMessenger)
+<!-- [![CI Status](http://img.shields.io/travis/Scott Kensell/MXRMessenger.svg?style=flat)](https://travis-ci.org/Scott Kensell/MXRMessenger) -->
 [![Version](https://img.shields.io/cocoapods/v/MXRMessenger.svg?style=flat)](http://cocoapods.org/pods/MXRMessenger)
 [![License](https://img.shields.io/cocoapods/l/MXRMessenger.svg?style=flat)](http://cocoapods.org/pods/MXRMessenger)
 [![Platform](https://img.shields.io/cocoapods/p/MXRMessenger.svg?style=flat)](http://cocoapods.org/pods/MXRMessenger)

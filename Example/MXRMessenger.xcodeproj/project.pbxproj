@@ -14,7 +14,6 @@
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* MXRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* MXRAppDelegate.m */; };
-		6003F5A7195388D20070C39A /* MXRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* MXRViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -22,7 +21,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
-		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		7688E7091EA65EDC00F890BC /* MXRExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7688E7081EA65EDC00F890BC /* MXRExampleViewController.m */; };
 		FE8C8700A25E7249524BB6A8 /* Pods_MXRMessenger_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827DB988D318FA9F81C22EE7 /* Pods_MXRMessenger_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,8 +48,6 @@
 		6003F59B195388D20070C39A /* MXRMessenger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MXRMessenger-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* MXRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXRAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* MXRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXRAppDelegate.m; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* MXRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXRViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* MXRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXRViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* MXRMessenger_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MXRMessenger_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -59,14 +56,15 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7688E7071EA65EDC00F890BC /* MXRExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXRExampleViewController.h; sourceTree = "<group>"; };
+		7688E7081EA65EDC00F890BC /* MXRExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXRExampleViewController.m; sourceTree = "<group>"; };
 		7CDD0B41169AFE401325484F /* Pods-MXRMessenger_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MXRMessenger_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MXRMessenger_Tests/Pods-MXRMessenger_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		7EA68E3FD584A1472226D87E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		7EA68E3FD584A1472226D87E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		827DB988D318FA9F81C22EE7 /* Pods_MXRMessenger_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MXRMessenger_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B98F85BAE5411F1C53B633F3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		B98F85BAE5411F1C53B633F3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C3875A518C1ECD88E6108C53 /* Pods-MXRMessenger_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MXRMessenger_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MXRMessenger_Tests/Pods-MXRMessenger_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DEF4A860961A8FADA7940F16 /* Pods_MXRMessenger_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MXRMessenger_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7E1B25445D2550CF3268126 /* MXRMessenger.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = MXRMessenger.podspec; path = ../MXRMessenger.podspec; sourceTree = "<group>"; };
+		F7E1B25445D2550CF3268126 /* MXRMessenger.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MXRMessenger.podspec; path = ../MXRMessenger.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,9 +132,8 @@
 			children = (
 				6003F59C195388D20070C39A /* MXRAppDelegate.h */,
 				6003F59D195388D20070C39A /* MXRAppDelegate.m */,
-				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* MXRViewController.h */,
-				6003F5A6195388D20070C39A /* MXRViewController.m */,
+				7688E7071EA65EDC00F890BC /* MXRExampleViewController.h */,
+				7688E7081EA65EDC00F890BC /* MXRExampleViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -279,7 +276,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -395,8 +391,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* MXRAppDelegate.m in Sources */,
-				6003F5A7195388D20070C39A /* MXRViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				7688E7091EA65EDC00F890BC /* MXRExampleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +526,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -545,6 +542,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
