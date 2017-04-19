@@ -12,6 +12,8 @@
 
 @interface UIImage (MXRMessenger)
 
++ (UIImage *)mxr_fromColor:(UIColor*)color;
+
 + (UIImage *)mxr_bubbleImageWithMaximumCornerRadius:(CGFloat)maxCornerRadius
                                minimumCornerRadius:(CGFloat)minCornerRadius
                                              color:(UIColor *)fillColor

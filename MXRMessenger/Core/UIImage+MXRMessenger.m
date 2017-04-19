@@ -12,6 +12,17 @@
 
 @implementation UIImage (MXRMessenger)
 
++ (UIImage *)mxr_fromColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 + (UIImage *)mxr_bubbleImageWithMaximumCornerRadius:(CGFloat)maxCornerRadius minimumCornerRadius:(CGFloat)minCornerRadius color:(UIColor *)fillColor cornersToApplyMaxRadius:(UIRectCorner)roundedCorners {
     CGFloat smallestImageHeight = (maxCornerRadius * 2) + 1;
     CGSize smallestImageSize = CGSizeMake(smallestImageHeight, smallestImageHeight);

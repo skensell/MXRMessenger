@@ -42,4 +42,14 @@ MXRMessenger is a lightweight UI chat component built on top of AsyncDisplayKit.
     vc.dependency 'MXRMessenger/Core'
   end
 
+  s.subspec 'MessageCell' do |mc|
+    mc.public_header_files = [
+      'MXRMessenger/MessageCell/**/*.h'
+    ]
+    mc.source_files = [
+      'MXRMessenger/MessageCell/**/*.{h,m}'
+    ]
+    mc.dependency 'MXRMessenger/Core'
+  end
+
 end

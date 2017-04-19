@@ -8,13 +8,15 @@
 
 #import <MXRMessenger/MXRMessengerInputToolbar.h>
 
+#import <MXRMessenger/UIColor+MXRMessenger.h>
+
 @implementation MXRMessengerInputToolbar {
     ASImageNode* _textInputBackgroundNode;
     UIEdgeInsets _textInputInsets;
 }
 
 - (instancetype)init {
-    return [self initWithFont:[UIFont systemFontOfSize:16.0f] placeholder:@"Type a message" tintColor:[UIColor blueColor]];
+    return [self initWithFont:[UIFont systemFontOfSize:16.0f] placeholder:@"Type a message" tintColor:[UIColor mxr_fbMessengerBlue]];
 }
 
 - (instancetype)initWithFont:(UIFont *)font placeholder:(NSString *)placeholder tintColor:(UIColor*)tintColor {
