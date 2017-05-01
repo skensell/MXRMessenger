@@ -27,8 +27,14 @@
 - (instancetype)initWithPerson:(Person *)person {
     self = [super init];
     if (self) {
-        _otherPersonsAvatar = person.avatarURL;
         self.title = person.name;
+        
+        MXRMessengerIconButtonNode* addPhotosBarButtonButtonNode = [MXRMessengerIconButtonNode buttonWithIcon:[[MXRMessengerPlusIconNode alloc] init] matchingToolbar:self.toolbar];
+        [addPhotosBarButtonButtonNode addTarget:self action:@selector(tapAddPhotos:) forControlEvents:ASControlNodeEventTouchUpInside];
+        self.toolbar.leftButtonsNode = addPhotosBarButtonButtonNode;
+        [self.toolbar.defaultSendButton addTarget:self action:@selector(tapSend:) forControlEvents:ASControlNodeEventTouchUpInside];
+        
+        _otherPersonsAvatar = person.avatarURL;
     }
     return self;
 }
@@ -40,11 +46,6 @@
     self.node.tableNode.delegate = self; // actually redundant bc MXRMessenger sets it
     self.node.tableNode.dataSource = self;
     self.node.tableNode.allowsSelection = YES;
-    
-    MXRMessengerIconButtonNode* addPhotosBarButtonButtonNode = [MXRMessengerIconButtonNode buttonWithIcon:[[MXRMessengerPlusIconNode alloc] init] matchingToolbar:self.toolbar];
-    [addPhotosBarButtonButtonNode addTarget:self action:@selector(tapAddPhotos:) forControlEvents:ASControlNodeEventTouchUpInside];
-    self.toolbar.leftButtonsNode = addPhotosBarButtonButtonNode;
-    [self.toolbar.defaultSendButton addTarget:self action:@selector(tapSend:) forControlEvents:ASControlNodeEventTouchUpInside];
     
     [self customizeCellFactory];
     [self fetchMessages];
