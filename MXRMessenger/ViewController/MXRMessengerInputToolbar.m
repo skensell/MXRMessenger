@@ -161,6 +161,7 @@
     
     UIColor* color = (UIColor*)parameters;
     [color setStroke];
+    [color setFill];
     CGFloat strokeWidth = 2.0f;
     CGFloat halfPlusLength = ceilf(0.15f*bounds.size.width);
     
@@ -168,6 +169,7 @@
     UIBezierPath* circlePath = [UIBezierPath bezierPathWithOvalInRect:circleContainerRect];
     [circlePath setLineWidth:strokeWidth];
     [circlePath stroke];
+    [circlePath fill];
     
     UIBezierPath* plusPath = [UIBezierPath bezierPath];
     [plusPath setLineWidth:strokeWidth];
@@ -180,6 +182,7 @@
     [plusPath moveToPoint:CGPointMake(centerX - halfPlusLength, centerY)];
     [plusPath addLineToPoint:CGPointMake(centerX + halfPlusLength, centerY)];
     
+    [[UIColor whiteColor] setStroke];
     [plusPath stroke];
     
     CGContextRestoreGState(context);
