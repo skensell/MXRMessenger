@@ -9,6 +9,9 @@
 #ifndef MXRMessengerMedium_h
 #define MXRMessengerMedium_h
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 @protocol MXRMessengerMedium <NSObject>
 
 - (NSURL*)mxr_messenger_imageURLForSize:(CGSize)renderedSizeInPoints;

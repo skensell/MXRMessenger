@@ -11,10 +11,13 @@
 #import <MXRMessenger/MXRMessageCellFactory.h>
 #import <MXRMessenger/UIColor+MXRMessenger.h>
 
+#import "Message.h"
+
 @interface ChatViewController () <MXRMessageCellFactoryDataSource, MXRMessageContentNodeDelegate, MXRMessageMediaCollectionNodeDelegate, ASTableDelegate, ASTableDataSource>
 
 @property (nonatomic, strong) MXRMessageCellFactory* cellFactory;
-@property (nonatomic, strong) NSArray* messages;
+@property (nonatomic, strong) NSMutableArray <Message*>* messages;
+@property (nonatomic, strong) NSURL* otherPersonsAvatar;
 
 @end
 
@@ -23,7 +26,15 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _messages = @[@"Hey Man! What's happening?" , @"Not too much!"];
+        _messages = [[NSMutableArray alloc] init];
+        NSTimeInterval timestamp = [NSDate date].timeIntervalSince1970 - 1800;
+        for (int i = 0; i < 100; i++) {
+            Message* m = [Message randomMessage];
+            m.timestamp = timestamp;
+            timestamp -= arc4random_uniform(1200);
+            [_messages addObject:m];
+        }
+        _otherPersonsAvatar = [NSURL URLWithString:@"https://s-media-cache-ak0.pinimg.com/originals/5a/31/ee/5a31ee43538a1444320086ead8749195.jpg"];
     }
     return self;
 }
@@ -103,18 +114,15 @@
 #pragma mark - MXMessageCellFactoryDataSource
 
 - (BOOL)cellFactory:(MXRMessageCellFactory *)cellFactory isMessageFromMeAtRow:(NSInteger)row {
-    // TODO
-    return row == 0;
+    return self.messages[row].senderID == 0;
 }
 
 - (NSURL *)cellFactory:(MXRMessageCellFactory *)cellFactory avatarURLAtRow:(NSInteger)row {
-    // TODO: put an avatar here
-    return [self cellFactory:cellFactory isMessageFromMeAtRow:row] ? nil : nil;
+    return [self cellFactory:cellFactory isMessageFromMeAtRow:row] ? nil : self.otherPersonsAvatar;
 }
 
 - (NSTimeInterval)cellFactory:(MXRMessageCellFactory *)cellFactory timeIntervalSince1970AtRow:(NSInteger)row {
-    // TODO
-    return 1.0f;
+    return self.messages[row].timestamp;
 }
 
 #pragma mark - ASTable
@@ -122,18 +130,14 @@
 - (NSInteger)tableNode:(ASTableNode *)tableNode numberOfRowsInSection:(NSInteger)section { return self.messages.count; }
 
 - (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id message = self.messages[indexPath.row];
-    // TODO
-    NSURL* imageURL = nil;
-    NSURL* videoURL = nil;
-    NSArray* mediaArray = nil;
-    NSString* text = (NSString*)message;
-    if (mediaArray.count > 1) {
-        return [self.cellFactory cellNodeBlockWithMedia:mediaArray tableNode:tableNode row:indexPath.row];
-    } else if (imageURL) {
-        return [self.cellFactory cellNodeBlockWithImageURL:imageURL showsPlayButton:(videoURL != nil) tableNode:tableNode row:indexPath.row];
+    Message* message = self.messages[indexPath.row];
+    if (message.media.count > 1) {
+        return [self.cellFactory cellNodeBlockWithMedia:message.media tableNode:tableNode row:indexPath.row];
+    } else if (message.media.count == 1) {
+        MessageMedium* medium = message.media.firstObject;
+        return [self.cellFactory cellNodeBlockWithImageURL:medium.photoURL showsPlayButton:(medium.videoURL != nil) tableNode:tableNode row:indexPath.row];
     } else {
-        return [self.cellFactory cellNodeBlockWithText:text tableNode:tableNode row:indexPath.row];
+        return [self.cellFactory cellNodeBlockWithText:message.text tableNode:tableNode row:indexPath.row];
     }
 }
 

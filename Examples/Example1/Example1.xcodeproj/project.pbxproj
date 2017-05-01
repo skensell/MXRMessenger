@@ -10,6 +10,7 @@
 		1C0CB8A267CF899E2FBE36A6 /* Pods_Example1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948132184711D5622FAF932B /* Pods_Example1.framework */; };
 		76D0518A1EB731CE0051A6BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D051871EB731CE0051A6BC /* AppDelegate.m */; };
 		76D0518B1EB731CE0051A6BC /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D051891EB731CE0051A6BC /* ChatViewController.m */; };
+		76D0518E1EB7345A0051A6BC /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D0518D1EB7345A0051A6BC /* Message.m */; };
 		76FB32F81EB730B000E206A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FB32F71EB730B000E206A4 /* main.m */; };
 		76FB33031EB730B000E206A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76FB33021EB730B000E206A4 /* Assets.xcassets */; };
 		76FB33061EB730B000E206A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76FB33041EB730B000E206A4 /* LaunchScreen.storyboard */; };
@@ -20,6 +21,8 @@
 		76D051871EB731CE0051A6BC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		76D051881EB731CE0051A6BC /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		76D051891EB731CE0051A6BC /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		76D0518C1EB7345A0051A6BC /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		76D0518D1EB7345A0051A6BC /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		76FB32F31EB730B000E206A4 /* Example1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76FB32F71EB730B000E206A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76FB33021EB730B000E206A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +79,8 @@
 				76D051871EB731CE0051A6BC /* AppDelegate.m */,
 				76D051881EB731CE0051A6BC /* ChatViewController.h */,
 				76D051891EB731CE0051A6BC /* ChatViewController.m */,
+				76D0518C1EB7345A0051A6BC /* Message.h */,
+				76D0518D1EB7345A0051A6BC /* Message.m */,
 				76FB33021EB730B000E206A4 /* Assets.xcassets */,
 				76FB33041EB730B000E206A4 /* LaunchScreen.storyboard */,
 				76FB33071EB730B000E206A4 /* Info.plist */,
@@ -222,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76D0518A1EB731CE0051A6BC /* AppDelegate.m in Sources */,
+				76D0518E1EB7345A0051A6BC /* Message.m in Sources */,
 				76FB32F81EB730B000E206A4 /* main.m in Sources */,
 				76D0518B1EB731CE0051A6BC /* ChatViewController.m in Sources */,
 			);
