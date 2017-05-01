@@ -1,0 +1,5 @@
+use_frameworks!
+
+target 'Example1' do
+  pod 'MXRMessenger', :path => '../../'
+end

@@ -1,16 +1,15 @@
 //
 //  main.m
-//  MXRMessenger
+//  Example1
 //
-//  Created by Scott Kensell on 04/18/2017.
-//  Copyright (c) 2017 Scott Kensell. All rights reserved.
+//  Created by Scott Kensell on 5/1/17.
+//  Copyright © 2017 Scott Kensell. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 #import "MXRAppDelegate.h"
 
-int main(int argc, char * argv[])
-{
+int main(int argc, char * argv[]) {
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([MXRAppDelegate class]));
     }

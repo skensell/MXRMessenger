@@ -1,6 +1,5 @@
 PODS:
   - AsyncDisplayKit/Core (2.2)
-  - Kiwi (2.4.0)
   - MXRMessenger (0.1.0):
     - MXRMessenger/Core (= 0.1.0)
     - MXRMessenger/MessageCell (= 0.1.0)
@@ -13,18 +12,16 @@ PODS:
     - MXRMessenger/Core
 
 DEPENDENCIES:
-  - Kiwi
-  - MXRMessenger (from `../`)
+  - MXRMessenger (from `../../`)
 
 EXTERNAL SOURCES:
   MXRMessenger:
-    :path: ../
+    :path: ../../
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: 1585f6cd0531ae9b30476f5912f577b73ebcb0e4
-  Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   MXRMessenger: 0763292361457d3c70a2758dd4f1b9e0da484e2d
 
-PODFILE CHECKSUM: 929b3437d21ac4722f15bcccf9a26d53321bd45a
+PODFILE CHECKSUM: 1cfa7934665969e417d09e398673a31b4641fdfc
 
 COCOAPODS: 1.2.1
