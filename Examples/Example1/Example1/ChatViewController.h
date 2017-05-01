@@ -8,6 +8,6 @@
 
 #import <MXRMessenger/MXRMessengerViewController.h>
 
-@interface MXRExampleViewController : MXRMessengerViewController
+@interface ChatViewController : MXRMessengerViewController
 
 @end

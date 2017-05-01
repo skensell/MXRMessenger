@@ -6,19 +6,19 @@
 //  Copyright © 2017 Scott Kensell. All rights reserved.
 //
 
-#import "MXRExampleViewController.h"
+#import "ChatViewController.h"
 
 #import <MXRMessenger/MXRMessageCellFactory.h>
 #import <MXRMessenger/UIColor+MXRMessenger.h>
 
-@interface MXRExampleViewController () <MXRMessageCellFactoryDataSource, MXRMessageContentNodeDelegate, MXRMessageMediaCollectionNodeDelegate, ASTableDelegate, ASTableDataSource>
+@interface ChatViewController () <MXRMessageCellFactoryDataSource, MXRMessageContentNodeDelegate, MXRMessageMediaCollectionNodeDelegate, ASTableDelegate, ASTableDataSource>
 
 @property (nonatomic, strong) MXRMessageCellFactory* cellFactory;
 @property (nonatomic, strong) NSArray* messages;
 
 @end
 
-@implementation MXRExampleViewController
+@implementation ChatViewController
 
 - (instancetype)init {
     self = [super init];

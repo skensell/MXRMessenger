@@ -6,15 +6,15 @@
 //  Copyright (c) 2017 Scott Kensell. All rights reserved.
 //
 
-#import "MXRAppDelegate.h"
+#import "AppDelegate.h"
 
-#import "MXRExampleViewController.h"
+#import "ChatViewController.h"
 
-@implementation MXRAppDelegate
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [MXRExampleViewController new];
+    self.window.rootViewController = [ChatViewController new];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
