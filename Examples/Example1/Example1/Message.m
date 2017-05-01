@@ -15,6 +15,7 @@
 + (instancetype)randomMessage {
     static dispatch_once_t onceToken;
     static NSArray* texts = nil;
+    static NSArray* photoCategories = nil;
     dispatch_once(&onceToken, ^{
         texts = @[@"You ever have the feeling that you're not sure if you're awake or still dreaming?",
                   @"All the time. It's called mescaline and it is the only way to fly.",
@@ -45,17 +46,19 @@
                   @"Morpheus?",
                   @"Yes...I've been looking for you, Neo. I don't know if you're ready to see what I want to show you, but unfortunately you and I have run out of time. They're coming for you, Neo, and I don't know what they're going to do.",
                   ];
+        photoCategories = @[@"abstract", @"city", @"people", @"transport", @"animals", @"food", @"nature", @"business", @"nightlife", @"sports", @"cats", @"fashion", @"technics"];
     });
     Message* m = [[Message alloc] init];
     m.senderID = arc4random_uniform(2);
-    if (arc4random_uniform(100) < 15) {
-        NSUInteger numberOfMedia = arc4random_uniform(100) < 50 ? 1 : arc4random_uniform(10);
+    if (arc4random_uniform(100) < 10) {
+        NSUInteger numberOfMedia = arc4random_uniform(100) < 50 ? 1 : (arc4random_uniform(9) + 1);
         NSMutableArray* media = [[NSMutableArray alloc] init];
         for (int i = 0; i < numberOfMedia; i++) {
             MessageMedium* medium = [[MessageMedium alloc] init];
-            medium.photoURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lorempixel.com/%@", (arc4random_uniform(2) > 0 ? @"320/180" : @"180/320")]];
+            medium.photoURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lorempixel.com/%@/%@", (arc4random_uniform(2) > 0 ? @"320/180" : @"180/320"), photoCategories[arc4random_uniform((uint32_t)photoCategories.count)]]];
             [media addObject:medium];
         }
+        m.media = media;
     } else {
         m.text = texts[arc4random_uniform((uint32_t)texts.count)];
     }
