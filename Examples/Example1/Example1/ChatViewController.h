@@ -8,6 +8,10 @@
 
 #import <MXRMessenger/MXRMessengerViewController.h>
 
+@class Person;
+
 @interface ChatViewController : MXRMessengerViewController
+
+- (instancetype)initWithPerson:(Person*)person;
 
 @end

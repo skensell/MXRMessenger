@@ -2,4 +2,5 @@ use_frameworks!
 
 target 'Example1' do
   pod 'MXRMessenger', :path => '../../'
+  pod 'AsyncDisplayKit', '2.2'
 end

@@ -11,6 +11,9 @@
 		76D0518A1EB731CE0051A6BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D051871EB731CE0051A6BC /* AppDelegate.m */; };
 		76D0518B1EB731CE0051A6BC /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D051891EB731CE0051A6BC /* ChatViewController.m */; };
 		76D0518E1EB7345A0051A6BC /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D0518D1EB7345A0051A6BC /* Message.m */; };
+		76D051911EB74DC70051A6BC /* ChatsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D051901EB74DC70051A6BC /* ChatsListViewController.m */; };
+		76D051941EB74DF20051A6BC /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D051931EB74DF20051A6BC /* Person.m */; };
+		76D051971EB753C70051A6BC /* PersonCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D051961EB753C70051A6BC /* PersonCellNode.m */; };
 		76FB32F81EB730B000E206A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FB32F71EB730B000E206A4 /* main.m */; };
 		76FB33031EB730B000E206A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76FB33021EB730B000E206A4 /* Assets.xcassets */; };
 		76FB33061EB730B000E206A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76FB33041EB730B000E206A4 /* LaunchScreen.storyboard */; };
@@ -23,6 +26,12 @@
 		76D051891EB731CE0051A6BC /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		76D0518C1EB7345A0051A6BC /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		76D0518D1EB7345A0051A6BC /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		76D0518F1EB74DC70051A6BC /* ChatsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatsListViewController.h; sourceTree = "<group>"; };
+		76D051901EB74DC70051A6BC /* ChatsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsListViewController.m; sourceTree = "<group>"; };
+		76D051921EB74DF20051A6BC /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		76D051931EB74DF20051A6BC /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		76D051951EB753C70051A6BC /* PersonCellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCellNode.h; sourceTree = "<group>"; };
+		76D051961EB753C70051A6BC /* PersonCellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCellNode.m; sourceTree = "<group>"; };
 		76FB32F31EB730B000E206A4 /* Example1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76FB32F71EB730B000E206A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76FB33021EB730B000E206A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,10 +86,16 @@
 			children = (
 				76D051861EB731CE0051A6BC /* AppDelegate.h */,
 				76D051871EB731CE0051A6BC /* AppDelegate.m */,
+				76D0518F1EB74DC70051A6BC /* ChatsListViewController.h */,
+				76D051901EB74DC70051A6BC /* ChatsListViewController.m */,
 				76D051881EB731CE0051A6BC /* ChatViewController.h */,
 				76D051891EB731CE0051A6BC /* ChatViewController.m */,
 				76D0518C1EB7345A0051A6BC /* Message.h */,
 				76D0518D1EB7345A0051A6BC /* Message.m */,
+				76D051921EB74DF20051A6BC /* Person.h */,
+				76D051931EB74DF20051A6BC /* Person.m */,
+				76D051951EB753C70051A6BC /* PersonCellNode.h */,
+				76D051961EB753C70051A6BC /* PersonCellNode.m */,
 				76FB33021EB730B000E206A4 /* Assets.xcassets */,
 				76FB33041EB730B000E206A4 /* LaunchScreen.storyboard */,
 				76FB33071EB730B000E206A4 /* Info.plist */,
@@ -226,9 +241,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76D051941EB74DF20051A6BC /* Person.m in Sources */,
 				76D0518A1EB731CE0051A6BC /* AppDelegate.m in Sources */,
 				76D0518E1EB7345A0051A6BC /* Message.m in Sources */,
+				76D051971EB753C70051A6BC /* PersonCellNode.m in Sources */,
 				76FB32F81EB730B000E206A4 /* main.m in Sources */,
+				76D051911EB74DC70051A6BC /* ChatsListViewController.m in Sources */,
 				76D0518B1EB731CE0051A6BC /* ChatViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,11 @@
 PODS:
+  - AsyncDisplayKit (2.2):
+    - AsyncDisplayKit/PINRemoteImage (= 2.2)
   - AsyncDisplayKit/Core (2.2)
+  - AsyncDisplayKit/PINRemoteImage (2.2):
+    - AsyncDisplayKit/Core
+    - PINRemoteImage/iOS (= 3.0.0-beta.8)
+    - PINRemoteImage/PINCache
   - MXRMessenger (0.1.0):
     - MXRMessenger/Core (= 0.1.0)
     - MXRMessenger/MessageCell (= 0.1.0)
@@ -10,8 +16,23 @@ PODS:
     - MXRMessenger/Core
   - MXRMessenger/ViewController (0.1.0):
     - MXRMessenger/Core
+  - PINCache (3.0.1-beta.4):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.4)
+    - PINCache/Core (= 3.0.1-beta.4)
+  - PINCache/Arc-exception-safe (3.0.1-beta.4):
+    - PINCache/Core
+  - PINCache/Core (3.0.1-beta.4):
+    - PINOperation (= 1.0.3)
+  - PINOperation (1.0.3)
+  - PINRemoteImage/Core (3.0.0-beta.8)
+  - PINRemoteImage/iOS (3.0.0-beta.8):
+    - PINRemoteImage/Core
+  - PINRemoteImage/PINCache (3.0.0-beta.8):
+    - PINCache (= 3.0.1-beta.4)
+    - PINRemoteImage/Core
 
 DEPENDENCIES:
+  - AsyncDisplayKit (= 2.2)
   - MXRMessenger (from `../../`)
 
 EXTERNAL SOURCES:
@@ -21,7 +42,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AsyncDisplayKit: 1585f6cd0531ae9b30476f5912f577b73ebcb0e4
   MXRMessenger: 0763292361457d3c70a2758dd4f1b9e0da484e2d
+  PINCache: a89c8f609232afac77128557bd12c861844423d7
+  PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
+  PINRemoteImage: c4f9f16932840c597f32e69dd288e10e111a1929
 
-PODFILE CHECKSUM: 1cfa7934665969e417d09e398673a31b4641fdfc
+PODFILE CHECKSUM: 40b2443249d8c32bc7eb284892b7ad1f1b3b4ce6
 
 COCOAPODS: 1.2.1

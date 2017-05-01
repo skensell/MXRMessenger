@@ -8,13 +8,15 @@
 
 #import "AppDelegate.h"
 
-#import "ChatViewController.h"
+#import "ChatsListViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [ChatViewController new];
+    UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:[ChatsListViewController new]];
+    nav.navigationBar.translucent = NO;
+    self.window.rootViewController = nav;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

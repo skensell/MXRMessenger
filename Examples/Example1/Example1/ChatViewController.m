@@ -12,6 +12,7 @@
 #import <MXRMessenger/UIColor+MXRMessenger.h>
 
 #import "Message.h"
+#import "Person.h"
 
 @interface ChatViewController () <MXRMessageCellFactoryDataSource, MXRMessageContentNodeDelegate, MXRMessageMediaCollectionNodeDelegate, ASTableDelegate, ASTableDataSource>
 
@@ -23,24 +24,18 @@
 
 @implementation ChatViewController
 
-- (instancetype)init {
+- (instancetype)initWithPerson:(Person *)person {
     self = [super init];
     if (self) {
-        _messages = [[NSMutableArray alloc] init];
-        NSTimeInterval timestamp = [NSDate date].timeIntervalSince1970 - 1800;
-        for (int i = 0; i < 100; i++) {
-            Message* m = [Message randomMessage];
-            m.timestamp = timestamp;
-            timestamp -= arc4random_uniform(1200);
-            [_messages addObject:m];
-        }
-        _otherPersonsAvatar = [NSURL URLWithString:@"https://s-media-cache-ak0.pinimg.com/originals/5a/31/ee/5a31ee43538a1444320086ead8749195.jpg"];
+        _otherPersonsAvatar = person.avatarURL;
+        self.title = person.name;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = self.title;
     
     self.node.tableNode.delegate = self; // actually redundant bc MXRMessenger sets it
     self.node.tableNode.dataSource = self;
@@ -52,8 +47,7 @@
     [self.toolbar.defaultSendButton addTarget:self action:@selector(tapSend:) forControlEvents:ASControlNodeEventTouchUpInside];
     
     [self customizeCellFactory];
-    
-    [self.node.tableNode reloadData];
+    [self fetchMessages];
 }
 
 - (void)customizeCellFactory {
@@ -104,11 +98,12 @@
 - (void)tapSend:(id)sender {
     NSString* text = [self.toolbar clearText];
     if (text.length == 0) return;
-//    [self sendMessage:nil];
-}
-
-- (void)sendMessage:(NSDictionary*)messageDic {
-    // TODO
+    Message* message = [[Message alloc] init];
+    message.text = text;
+    message.senderID = 0;
+    message.timestamp = [NSDate date].timeIntervalSince1970;
+    [self.messages insertObject:message atIndex:0];
+    [self.cellFactory updateTableNode:self.node.tableNode animated:YES withInsertions:@[[NSIndexPath indexPathForRow:0 inSection:0]] deletions:nil reloads:nil completion:nil];
 }
 
 #pragma mark - MXMessageCellFactoryDataSource
@@ -182,6 +177,24 @@
     NSIndexPath* indexPath = [cellNode indexPath];
     if (!indexPath) return;
     // delete cell in model
+}
+
+- (void)fetchMessages {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSMutableArray* messages = [[NSMutableArray alloc] init];
+        NSTimeInterval timestamp = [NSDate date].timeIntervalSince1970 - 1800;
+        for (int i = 0; i < 20; i++) {
+            Message* m = [Message randomMessage];
+            m.timestamp = timestamp;
+            timestamp -= arc4random_uniform(1200);
+            [messages addObject:m];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.messages = messages;
+            [self.node.tableNode reloadData];
+        });
+    });
+
 }
 
 @end
