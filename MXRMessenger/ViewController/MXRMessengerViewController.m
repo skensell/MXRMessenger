@@ -22,11 +22,24 @@
 @implementation MXRMessengerViewController
 
 - (instancetype)init {
-    self = [super initWithNode:[[MXRMessengerNode alloc] init]];
+    return [self initWithNode:[[MXRMessengerNode alloc] init] toolbar:[[MXRMessengerInputToolbar alloc] init]];
+}
+
+- (instancetype)initWithToolbar:(MXRMessengerInputToolbar *)toolbar {
+    return [self initWithNode:[[MXRMessengerNode alloc] init] toolbar:toolbar];
+}
+
+- (instancetype)initWithNode:(ASDisplayNode *)node {
+    NSAssert(@"You did not call the desingated initializer of %@", NSStringFromClass([self class]));
+    return nil;
+}
+
+- (instancetype)initWithNode:(MXRMessengerNode *)node toolbar:(MXRMessengerInputToolbar *)toolbar {
+    self = [super initWithNode:node];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
         self.automaticallyAdjustsScrollViewInsets = NO;
-        _toolbar = [[MXRMessengerInputToolbar alloc] init];
+        _toolbar = toolbar;
     }
     return self;
 }

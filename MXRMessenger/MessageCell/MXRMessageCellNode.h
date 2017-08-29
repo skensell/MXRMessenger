@@ -55,6 +55,8 @@
 
 @end
 
+typedef MXRMessageCellNode* (^MXRMessageCellNodeBlock)();
+
 typedef MXRMessageCellNode<MXRMessageTextNode*> MXRMessageTextCellNode;
 typedef MXRMessageTextCellNode* (^MXRMessageTextCellNodeBlock)();
 

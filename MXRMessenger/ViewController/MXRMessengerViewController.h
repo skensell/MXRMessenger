@@ -16,7 +16,8 @@
 
 @property (nonatomic, strong, readonly) MXRMessengerInputToolbar* toolbar;
 
-- (instancetype)init NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithNode:(MXRMessengerNode *)node toolbar:(MXRMessengerInputToolbar*)toolbar NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithToolbar:(MXRMessengerInputToolbar*)toolbar;
 
 /**
  * Defaults to calculating the height of status and nav bars + 6.
