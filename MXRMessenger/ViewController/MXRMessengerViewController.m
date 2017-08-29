@@ -31,7 +31,7 @@
 
 - (instancetype)initWithNode:(ASDisplayNode *)node {
     NSAssert(@"You did not call the desingated initializer of %@", NSStringFromClass([self class]));
-    return nil;
+    return [self initWithNode:[[MXRMessengerNode alloc] init] toolbar:[[MXRMessengerInputToolbar alloc] init]];
 }
 
 - (instancetype)initWithNode:(MXRMessengerNode *)node toolbar:(MXRMessengerInputToolbar *)toolbar {

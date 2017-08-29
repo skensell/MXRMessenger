@@ -93,7 +93,6 @@
         NSMutableDictionary* attrsMutable = [(attributes ? : @{}) mutableCopy];
         attrsMutable[NSFontAttributeName] = attrsMutable[NSFontAttributeName] ? : [UIFont systemFontOfSize:15];
         attrsMutable[NSForegroundColorAttributeName] = attrsMutable[NSForegroundColorAttributeName] ? : [UIColor blackColor];
-        UIFont* font = attrsMutable[NSFontAttributeName];
         self.showsUIMenuControllerOnLongTap = YES;
         self.menuItemTypes |= MXRMessageMenuItemTypeCopy;
         self.backgroundColor = backgroundColor;

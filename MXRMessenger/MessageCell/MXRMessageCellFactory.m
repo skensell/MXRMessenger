@@ -300,7 +300,7 @@ static inline BOOL MXRMessageContextNextShowsDate(MXRMessageContext c) { return 
         _avatarConfig = avatarConfig;
         _textConfig = textConfig ? : [[MXRMessageTextConfiguration alloc] init];
         _imageConfig = imageConfig ? : [[MXRMessageImageConfiguration alloc] init];
-        _mediaCollectionConfig = mediaCollectionConfig ? : [[MXRMessageImageConfiguration alloc] init];
+        _mediaCollectionConfig = mediaCollectionConfig ? : [[MXRMessageMediaCollectionConfiguration alloc] init];
     }
     return self;
 }
