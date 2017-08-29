@@ -11,9 +11,9 @@
 @implementation Person
 
 + (NSArray *)someRandomPeople {
-    NSArray* peopleData = @[@[@"Keanu Reeves", @"https://scontent.fbud1-1.fna.fbcdn.net/v/t1.0-1/c29.29.365.365/s50x50/557324_445453635499514_1953039798_n.jpg?oh=4cecc009902b6a7d9e4f66fb5799969a&oe=59C233CE"],
-                            @[@"Barack Obama", @"https://scontent.fbud1-1.fna.fbcdn.net/v/t1.0-1/p50x50/1376580_10151878817796749_162570700_n.png?oh=35359e5fc67a52756fc8b58cf6da4007&oe=59915D2B"],
-                            @[@"Donald Trump", @"https://scontent.fbud1-1.fna.fbcdn.net/v/t1.0-1/p50x50/17903454_10158949965035725_3181251005684687258_n.jpg?oh=7a12392608fa82f76fd0d126ef2b9766&oe=597EDEA1"]];
+    NSArray* peopleData = @[@[@"Keanu Reeves", @"http://vignette2.wikia.nocookie.net/mst3k/images/0/0c/RiffTrax-_Keanu_Reeves_in_The_Matrix.jpg/revision/latest?cb=20140609075119"],
+                            @[@"Barack Obama", @"https://vignette4.wikia.nocookie.net/thefutureofeuropes/images/a/ae/Obama-head.png/revision/latest?cb=20140629212721"],
+                            @[@"Donald Trump", @"https://upload.wikimedia.org/wikipedia/commons/9/9e/Donald_Trump_crop_2015.jpeg"]];
     NSMutableArray* allPeople = [[NSMutableArray alloc] init];
     for (int i = 0; i < peopleData.count; i++) {
         Person* p = [[Person alloc] init];
