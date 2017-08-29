@@ -12,7 +12,9 @@ Pod::Spec.new do |s|
   s.summary          = 'MXRMessenger is a lightweight UI chat component built on top of Texture.'
 
   s.description      = <<-DESC
-MXRMessenger is a lightweight UI chat component built on top of Texture.
+MXRMessenger is a lightweight UI chat component built on top of Texture (formerly AsyncDisplayKit).
+The ViewController subspec features a pleasantly dismissable keyboard accessorry view and toolbar.
+The MessageCell subspec features a Facebook-style chat bubble-grouping system.
                        DESC
 
   s.homepage         = 'https://github.com/skensell/MXRMessenger'
