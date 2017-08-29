@@ -1,51 +1,52 @@
 PODS:
-  - AsyncDisplayKit (2.2):
-    - AsyncDisplayKit/PINRemoteImage (= 2.2)
-  - AsyncDisplayKit/Core (2.2)
-  - AsyncDisplayKit/PINRemoteImage (2.2):
-    - AsyncDisplayKit/Core
-    - PINRemoteImage/iOS (= 3.0.0-beta.8)
-    - PINRemoteImage/PINCache
   - MXRMessenger (0.1.0):
     - MXRMessenger/Core (= 0.1.0)
     - MXRMessenger/MessageCell (= 0.1.0)
     - MXRMessenger/ViewController (= 0.1.0)
   - MXRMessenger/Core (0.1.0):
-    - AsyncDisplayKit/Core (~> 2.0)
+    - Texture/Core (~> 2.0)
   - MXRMessenger/MessageCell (0.1.0):
     - MXRMessenger/Core
   - MXRMessenger/ViewController (0.1.0):
     - MXRMessenger/Core
-  - PINCache (3.0.1-beta.4):
-    - PINCache/Arc-exception-safe (= 3.0.1-beta.4)
-    - PINCache/Core (= 3.0.1-beta.4)
-  - PINCache/Arc-exception-safe (3.0.1-beta.4):
+  - PINCache (3.0.1-beta.5):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.5)
+    - PINCache/Core (= 3.0.1-beta.5)
+  - PINCache/Arc-exception-safe (3.0.1-beta.5):
     - PINCache/Core
-  - PINCache/Core (3.0.1-beta.4):
+  - PINCache/Core (3.0.1-beta.5):
     - PINOperation (= 1.0.3)
   - PINOperation (1.0.3)
-  - PINRemoteImage/Core (3.0.0-beta.8)
-  - PINRemoteImage/iOS (3.0.0-beta.8):
+  - PINRemoteImage/Core (3.0.0-beta.11):
+    - PINOperation
+  - PINRemoteImage/iOS (3.0.0-beta.11):
     - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.0-beta.8):
-    - PINCache (= 3.0.1-beta.4)
+  - PINRemoteImage/PINCache (3.0.0-beta.11):
+    - PINCache (= 3.0.1-beta.5)
     - PINRemoteImage/Core
+  - Texture (2.4):
+    - Texture/PINRemoteImage (= 2.4)
+  - Texture/Core (2.4)
+  - Texture/PINRemoteImage (2.4):
+    - PINRemoteImage/iOS (= 3.0.0-beta.11)
+    - PINRemoteImage/PINCache
+    - Texture/Core
 
 DEPENDENCIES:
-  - AsyncDisplayKit (= 2.2)
   - MXRMessenger (from `../../`)
+  - Texture
 
 EXTERNAL SOURCES:
   MXRMessenger:
     :path: ../../
 
 SPEC CHECKSUMS:
-  AsyncDisplayKit: 1585f6cd0531ae9b30476f5912f577b73ebcb0e4
-  MXRMessenger: 0763292361457d3c70a2758dd4f1b9e0da484e2d
-  PINCache: a89c8f609232afac77128557bd12c861844423d7
+  MXRMessenger: d8a98d987eb281e06ca24f3611d4eed8771b08a8
+  PINCache: 98e7b1ef782824ad231ade51987c218b758c30d8
   PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
-  PINRemoteImage: c4f9f16932840c597f32e69dd288e10e111a1929
+  PINRemoteImage: d71988f11914a050d6d4cf51efc4ad1de8c0a9d8
+  Texture: a5526314780eab35f642d956627f09316b9514e8
 
-PODFILE CHECKSUM: 40b2443249d8c32bc7eb284892b7ad1f1b3b4ce6
+PODFILE CHECKSUM: e52e2f58a5b4104966f0b955bfb80f444bc70c1f
 
 COCOAPODS: 1.2.1

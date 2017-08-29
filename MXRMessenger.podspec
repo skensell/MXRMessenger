@@ -9,10 +9,10 @@
 Pod::Spec.new do |s|
   s.name             = 'MXRMessenger'
   s.version          = '0.1.0'
-  s.summary          = 'MXRMessenger is a lightweight UI chat component built on top of AsyncDisplayKit.'
+  s.summary          = 'MXRMessenger is a lightweight UI chat component built on top of Texture.'
 
   s.description      = <<-DESC
-MXRMessenger is a lightweight UI chat component built on top of AsyncDisplayKit.
+MXRMessenger is a lightweight UI chat component built on top of Texture.
                        DESC
 
   s.homepage         = 'https://github.com/skensell/MXRMessenger'
@@ -29,7 +29,7 @@ MXRMessenger is a lightweight UI chat component built on top of AsyncDisplayKit.
     core.source_files = [
       'MXRMessenger/Core/**/*.{h,m}'
     ]
-    core.dependency 'AsyncDisplayKit/Core', '~> 2.0'
+    core.dependency 'Texture/Core', '~> 2.0'
   end
 
   s.subspec 'ViewController' do |vc|
