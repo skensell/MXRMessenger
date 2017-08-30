@@ -20,7 +20,7 @@ The MessageCell subspec features a Facebook-style chat bubble-grouping system.
   s.homepage         = 'https://github.com/skensell/MXRMessenger'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Scott Kensell' => 'skensell@gmail.com' }
-  s.source           = { :git => 'https://github.com/Scott Kensell/MXRMessenger.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/skensell/MXRMessenger.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
 
