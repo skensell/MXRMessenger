@@ -133,6 +133,20 @@ To create the message cells, you can implement the `ASTableDataSource` method li
     }
 }
 ```
+and to send a new message or update the table with new/old messages there is just one method on the `cellFactory`:
+```Obj-C
+- (void)updateTableNode:(ASTableNode*)tableNode animated:(BOOL)animated withInsertions:(NSArray<NSIndexPath*>*)insertions deletions:(NSArray<NSIndexPath*>*)deletions reloads:(NSArray<NSIndexPath*>*)reloads completion:(void(^)(BOOL))completion;
+
+```
+
+
+There are a few key assumptions to keep in mind:
+
+- There is only one section: 0.
+- The table is [inverted](http://texturegroup.org/docs/inversion.html) so insert new messages at (0,0).
+- Timestamp headers are automatically shown for messages with a gap greater than 15 minutes, but you can disable this if you want. You can show/hide them programmatically through a method on the `cellFactory` (e.g. when the user taps the cell).
+- Corner-rounding management happens by calling the `MXRMessageCellFactoryDataSource` methods for the current indexPath as well as its neighbors.  That means you should keep those methods quick - ideally they are just dictionary lookups.
+- Showing media on tap is outside the scope of this library.  I have a Texture-based media viewer which I use and will hopefully open source some day.
 
 For more details, it's probably best to check the example project.
 
