@@ -7,34 +7,147 @@
 
 ## Why Another Chat Library?
 
-`MXRMessenger` is a customizable chat library meant to provide a smooth-scrolling, responsive experience.  I felt the need to write it because
+MXRMessenger is a customizable chat library meant to provide a smooth-scrolling, responsive experience.  I felt the need to write it because
 
 - [NMessenger](https://github.com/eBay/NMessenger) is Swift-only: see https://github.com/eBay/NMessenger/issues/40
 - [JSQMessagesViewController](https://github.com/jessesquires/JSQMessagesViewController) is UIKit-based and was the library we were using until we experienced stability and performance issues.  It is also no longer being maintained.
-- I could not find another [Texture](http://texturegroup.org) (or ASDK) chat library which was lightweight, customizable enough for our needs. Sometimes they depend on [SlackTextViewController](https://github.com/slackhq/slacktextviewcontroller#core) which I felt is too heavy and unnecessary a dependency for our specific needs.
+- I could not find another [Texture](http://texturegroup.org) (or ASDK) chat library which was lightweight and customizable enough. Sometimes they depend on [SlackTextViewController](https://github.com/slackhq/slacktextviewcontroller#core) which is a good library, but I thought probably overkill for our needs.
 
 That said, if you have never worked with [Texture](http://texturegroup.org), you are probably better off choosing one of the more mature libraries linked above.
 
 ## Features
 
+<div>
+    <img alt="Screenshot 1" src="http://i.imgur.com/ZDwOu2j.png" width="325px" />
+    <img alt="Screenshot 2" src="http://i.imgur.com/7EYT5HQ.png" width="325px" />
+</div>
 
+The `MXRMessengerViewController` is like a baby version of the [SlackTextViewController](https://github.com/slackhq/slacktextviewcontroller#core) and can be included on its own with `pod 'MXRMessenger/ViewController'`. It features
 
+- An input toolbar which you can dismiss interactively.
+- A growing input text node with a max number of lines.
+- Customizable fonts, colors, and buttons.
+
+The other subspec `pod 'MXRMessenger/MessageCell'` provides Facebook-style bubbles and a friendly factory. Main features:
+
+- Send text, image, video, or multiple images/video at the same time.
+- Rounded corners which dynamically update to group messages from the same sender.
+- Automatic date formatting.
+- Images dynamically update their size to true aspect ratio when sent 1 at a time.
+- Copy, Delete, and easy opt-in menu items.
+- Tap/gesture callbacks.
+- Fully customizable, whether it's left-to-right, no avatar, spacing issues, font or color issues, a lot is customizable.
+
+And since we are dependent on [Texture](http://texturegroup.org), you get 60 fps smoothness for free.
+
+## Installation
+
+MXRMessenger is available through [CocoaPods](http://cocoapods.org).
+
+For the full chat library, add `pod 'MXRMessenger'` to your Podfile.
+
+For just the ViewController add `pod 'MXRMessenger/ViewController'`.
+
+For just the Facebook-style bubbles add `pod 'MXRMessenger/MessageCell'`.
+
+Where necessary, add
+
+```Obj-C
+#import <MXRMessenger/MXRMessenger.h>
+```
+
+## Use
+
+Subclass `MXRMessengerViewController`.  Then, the easiest way to instantiate message cells is with the provided `MXRMessageCellFactory`. So create a strong property:
+
+```Obj-C
+@property (nonatomic, strong) MXRMessageCellFactory* cellFactory;
+```
+
+Most customizations happen at init.  You can copy-paste the following code and just remove or customize whatever you want. And then implement the delegate or datasource methods the compiler complains about.
+
+```Obj-C
+- (instancetype)init {
+    MXRMessengerInputToolbar* toolbar = [[MXRMessengerInputToolbar alloc] initWithFont:[UIFont systemFontOfSize:16.0f] placeholder:@"Type a message" tintColor:[UIColor mxr_fbMessengerBlue]];
+    self = [super initWithToolbar:toolbar];
+    if (self) {
+        // add extra buttons to toolbar
+        MXRMessengerIconButtonNode* addPhotosBarButtonButtonNode = [MXRMessengerIconButtonNode buttonWithIcon:[[MXRMessengerPlusIconNode alloc] init] matchingToolbar:self.toolbar];
+        [addPhotosBarButtonButtonNode addTarget:self action:@selector(tapAddPhotos:) forControlEvents:ASControlNodeEventTouchUpInside];
+        self.toolbar.leftButtonsNode = addPhotosBarButtonButtonNode;
+        [self.toolbar.defaultSendButton addTarget:self action:@selector(tapSend:) forControlEvents:ASControlNodeEventTouchUpInside];    
+    
+        // delegate must be self for interactive keyboard, datasource can be whatever
+        self.node.tableNode.delegate = self;
+        self.node.tableNode.dataSource = self;
+        [self customizeCellFactory];
+    }
+    return self
+}
+
+- (void)customizeCellFactory {
+    MXRMessageCellLayoutConfiguration* layoutConfigForMe = [MXRMessageCellLayoutConfiguration rightToLeft];
+    MXRMessageCellLayoutConfiguration* layoutConfigForOthers = [MXRMessageCellLayoutConfiguration leftToRight];
+    
+    MXRMessageAvatarConfiguration* avatarConfigForMe = nil;
+    MXRMessageAvatarConfiguration* avatarConfigForOthers = [[MXRMessageAvatarConfiguration alloc] init];
+    
+    MXRMessageTextConfiguration* textConfigForMe = [[MXRMessageTextConfiguration alloc] initWithFont:nil textColor:[UIColor whiteColor] backgroundColor:[UIColor mxr_fbMessengerBlue]];
+    MXRMessageTextConfiguration* textConfigForOthers = [[MXRMessageTextConfiguration alloc] initWithFont:nil textColor:[UIColor blackColor] backgroundColor:[UIColor mxr_bubbleLightGrayColor]];
+    CGFloat maxCornerRadius = textConfigForMe.maxCornerRadius;
+    
+    MXRMessageImageConfiguration* imageConfig = [[MXRMessageImageConfiguration alloc] init];
+    imageConfig.maxCornerRadius = maxCornerRadius;
+    MXRMessageMediaCollectionConfiguration* mediaCollectionConfig = [[MXRMessageMediaCollectionConfiguration alloc] init];
+    mediaCollectionConfig.maxCornerRadius = maxCornerRadius;
+    
+    textConfigForMe.menuItemTypes |= MXRMessageMenuItemTypeDelete;
+    textConfigForOthers.menuItemTypes |= MXRMessageMenuItemTypeDelete;
+    imageConfig.menuItemTypes |= MXRMessageMenuItemTypeDelete;
+    imageConfig.showsUIMenuControllerOnLongTap = YES;
+    CGFloat s = [UIScreen mainScreen].scale;
+    imageConfig.borderWidth = s > 0 ? (1.0f/s) : 0.5f;
+    
+    MXRMessageCellConfiguration* cellConfigForMe = [[MXRMessageCellConfiguration alloc] initWithLayoutConfig:layoutConfigForMe avatarConfig:avatarConfigForMe textConfig:textConfigForMe imageConfig:imageConfig mediaCollectionConfig:mediaCollectionConfig];
+    MXRMessageCellConfiguration* cellConfigForOthers = [[MXRMessageCellConfiguration alloc] initWithLayoutConfig:layoutConfigForOthers avatarConfig:avatarConfigForOthers textConfig:textConfigForOthers imageConfig:imageConfig mediaCollectionConfig:mediaCollectionConfig];
+    
+    self.cellFactory = [[MXRMessageCellFactory alloc] initWithCellConfigForMe:cellConfigForMe cellConfigForOthers:cellConfigForOthers];
+    self.cellFactory.dataSource = self;
+    self.cellFactory.contentNodeDelegate = self;
+    self.cellFactory.mediaCollectionDelegate = self;
+}
+
+```
+
+To create the message cells, you can implement the `ASTableDataSource` method like so
+```Obj-C
+- (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Message* message = self.messages[indexPath.row];
+    if (message.media.count > 1) {
+        return [self.cellFactory cellNodeBlockWithMedia:message.media tableNode:tableNode row:indexPath.row];
+    } else if (message.media.count == 1) {
+        MessageMedium* medium = message.media.firstObject;
+        return [self.cellFactory cellNodeBlockWithImageURL:medium.photoURL showsPlayButton:(medium.videoURL != nil) tableNode:tableNode row:indexPath.row];
+    } else {
+        return [self.cellFactory cellNodeBlockWithText:message.text tableNode:tableNode row:indexPath.row];
+    }
+}
+```
+
+For more details, it's probably best to check the example project.
 
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, and run `pod install` from the Example directory which has a `Podfile`.  Then open the `*.xcworkspace` file and build.
 
 ## Requirements
 
-## Installation
+Texture 2.X and iOS 8+.
 
-MXRMessenger is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+## Contributing
 
-```ruby
-pod "MXRMessenger"
-```
+There are no tests at present. Keep PRs very small please.
 
 ## Author
 
