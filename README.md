@@ -13,7 +13,7 @@ MXRMessenger is a customizable chat library meant to provide a smooth-scrolling,
 - [JSQMessagesViewController](https://github.com/jessesquires/JSQMessagesViewController) is UIKit-based and was the library we were using until we experienced stability and performance issues.  It is also no longer being maintained.
 - I could not find another [Texture](http://texturegroup.org) (or ASDK) chat library which was lightweight and customizable enough. Sometimes they depend on [SlackTextViewController](https://github.com/slackhq/slacktextviewcontroller#core) which is a good library, but I thought probably overkill for our needs.
 
-That said, if you have never worked with [Texture](http://texturegroup.org), you are probably better off choosing one of the more mature libraries linked above.
+That said, if you have never worked with [Texture](http://texturegroup.org), you are probably better off choosing one of the more mature libraries linked above. This library is also hardly tested and used by only 1 app so far in production, so use at your own risk. 
 
 ## Features
 
