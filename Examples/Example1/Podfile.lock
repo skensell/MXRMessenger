@@ -17,18 +17,18 @@ PODS:
   - PINCache/Core (3.0.1-beta.5):
     - PINOperation (= 1.0.3)
   - PINOperation (1.0.3)
-  - PINRemoteImage/Core (3.0.0-beta.11):
+  - PINRemoteImage/Core (3.0.0-beta.12):
     - PINOperation
-  - PINRemoteImage/iOS (3.0.0-beta.11):
+  - PINRemoteImage/iOS (3.0.0-beta.12):
     - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.0-beta.11):
+  - PINRemoteImage/PINCache (3.0.0-beta.12):
     - PINCache (= 3.0.1-beta.5)
     - PINRemoteImage/Core
-  - Texture (2.4):
-    - Texture/PINRemoteImage (= 2.4)
-  - Texture/Core (2.4)
-  - Texture/PINRemoteImage (2.4):
-    - PINRemoteImage/iOS (= 3.0.0-beta.11)
+  - Texture (2.5.1):
+    - Texture/PINRemoteImage (= 2.5.1)
+  - Texture/Core (2.5.1)
+  - Texture/PINRemoteImage (2.5.1):
+    - PINRemoteImage/iOS (= 3.0.0-beta.12)
     - PINRemoteImage/PINCache
     - Texture/Core
 
@@ -41,12 +41,12 @@ EXTERNAL SOURCES:
     :path: ../../
 
 SPEC CHECKSUMS:
-  MXRMessenger: d8a98d987eb281e06ca24f3611d4eed8771b08a8
+  MXRMessenger: 436852334c043167b92235e80020cf7671fa0d14
   PINCache: 98e7b1ef782824ad231ade51987c218b758c30d8
   PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
-  PINRemoteImage: d71988f11914a050d6d4cf51efc4ad1de8c0a9d8
-  Texture: a5526314780eab35f642d956627f09316b9514e8
+  PINRemoteImage: 0cefe720c2612960bd360710efbd6c73a1991d5f
+  Texture: c3f06e344aa091667b7a56002e525cde674d021a
 
 PODFILE CHECKSUM: e52e2f58a5b4104966f0b955bfb80f444bc70c1f
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
