@@ -55,16 +55,16 @@
 
 @end
 
-typedef MXRMessageCellNode* (^MXRMessageCellNodeBlock)();
+typedef MXRMessageCellNode* (^MXRMessageCellNodeBlock)(void);
 
 typedef MXRMessageCellNode<MXRMessageTextNode*> MXRMessageTextCellNode;
-typedef MXRMessageTextCellNode* (^MXRMessageTextCellNodeBlock)();
+typedef MXRMessageTextCellNode* (^MXRMessageTextCellNodeBlock)(void);
 
 typedef MXRMessageCellNode<MXRMessageImageNode*> MXRMessageImageCellNode;
-typedef MXRMessageImageCellNode* (^MXRMessageImageCellNodeBlock)();
+typedef MXRMessageImageCellNode* (^MXRMessageImageCellNodeBlock)(void);
 
 typedef MXRMessageCellNode<MXRMessageMediaCollectionNode*> MXRMessageMediaCollectionCellNode;
-typedef MXRMessageMediaCollectionCellNode* (^MXRMessageMediaCollectionCellNodeBlock)();
+typedef MXRMessageMediaCollectionCellNode* (^MXRMessageMediaCollectionCellNodeBlock)(void);
 
 @interface MXRMessageCellLayoutConfiguration : NSObject <NSCopying>
 
