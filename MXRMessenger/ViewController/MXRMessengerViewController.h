@@ -20,8 +20,9 @@
 - (instancetype)initWithToolbar:(MXRMessengerInputToolbar*)toolbar;
 
 /**
+ * Override to provide custom top inset if the content spills under some view at the top.
+ * This may need some playing with because of iOS 11 and iPhone X.
  * Defaults to calculating the height of status and nav bars + 6.
- * Called in `viewDidLoad`.
  */
 - (CGFloat)calculateTopInset;
 
