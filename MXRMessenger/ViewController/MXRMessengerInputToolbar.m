@@ -13,6 +13,7 @@
 @implementation MXRMessengerInputToolbar {
     ASImageNode* _textInputBackgroundNode;
     UIEdgeInsets _textInputInsets;
+    UIEdgeInsets _finalInsets;
 }
 
 - (instancetype)init {
@@ -56,6 +57,12 @@
         
         _defaultSendButton = [MXRMessengerIconButtonNode buttonWithIcon:[[MXRMessengerSendIconNode alloc] init] matchingToolbar:self];
         _rightButtonsNode = _defaultSendButton;
+        
+        _finalInsets = UIEdgeInsetsMake(8, 0, 10, 0);
+        BOOL isIphoneXPortrait = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && ([UIScreen mainScreen].bounds.size.height - 812) < 2; // assumes this init is called on main thread
+        if (isIphoneXPortrait) {
+            _finalInsets.bottom = 25.0f; // can parameterize later
+        }
     }
     return self;
 }
@@ -77,7 +84,7 @@
     if (_rightButtonsNode) [inputBarChildren addObject:_rightButtonsNode];
     inputBar.children = inputBarChildren;
     
-    ASInsetLayoutSpec* inputBarInset = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(8, 0, 10, 0) child:inputBar];
+    ASInsetLayoutSpec* inputBarInset = [ASInsetLayoutSpec insetLayoutSpecWithInsets:_finalInsets child:inputBar];
     return inputBarInset;
 }
 
