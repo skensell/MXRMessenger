@@ -1,13 +1,13 @@
 PODS:
-  - MXRMessenger (0.1.1):
-    - MXRMessenger/Core (= 0.1.1)
-    - MXRMessenger/MessageCell (= 0.1.1)
-    - MXRMessenger/ViewController (= 0.1.1)
-  - MXRMessenger/Core (0.1.1):
+  - MXRMessenger (0.1.3):
+    - MXRMessenger/Core (= 0.1.3)
+    - MXRMessenger/MessageCell (= 0.1.3)
+    - MXRMessenger/ViewController (= 0.1.3)
+  - MXRMessenger/Core (0.1.3):
     - Texture/Core (~> 2.0)
-  - MXRMessenger/MessageCell (0.1.1):
+  - MXRMessenger/MessageCell (0.1.3):
     - MXRMessenger/Core
-  - MXRMessenger/ViewController (0.1.1):
+  - MXRMessenger/ViewController (0.1.3):
     - MXRMessenger/Core
   - PINCache (3.0.1-beta.5):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.5)
@@ -41,7 +41,7 @@ EXTERNAL SOURCES:
     :path: ../../
 
 SPEC CHECKSUMS:
-  MXRMessenger: c5863cc4a488311a8e1bc8b95ea27965853e4f58
+  MXRMessenger: 1224c9a7f7056f65b8c12b05771fe2b9fbdeb4dd
   PINCache: 98e7b1ef782824ad231ade51987c218b758c30d8
   PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
   PINRemoteImage: 0cefe720c2612960bd360710efbd6c73a1991d5f

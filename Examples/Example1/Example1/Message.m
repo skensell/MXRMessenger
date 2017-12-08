@@ -68,8 +68,8 @@
         }
         m.media = media;
     } else {
-//        m.text = linkTexts[arc4random_uniform((uint32_t)linkTexts.count)];
-        m.text = texts[arc4random_uniform((uint32_t)texts.count)];
+        m.text = linkTexts[arc4random_uniform((uint32_t)linkTexts.count)];
+//        m.text = texts[arc4random_uniform((uint32_t)texts.count)];
     }
     return m;
 }
