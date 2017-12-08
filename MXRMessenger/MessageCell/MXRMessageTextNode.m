@@ -11,11 +11,17 @@
 #import "UIImage+MXRMessenger.h"
 #import "UIColor+MXRMessenger.h"
 
+@interface MXRMessageTextNode () <ASTextNodeDelegate>
+
+@end
+
 @implementation MXRMessageTextNode {
     MXRMessageTextConfiguration* _configuration;
     UIRectCorner _cornersHavingRadius;
     
-    NSTimeInterval _touchStartTimestamp;
+    BOOL _delegateImplementsTapURL;
+    BOOL _hasLinks;
+    BOOL _isTouchingURL;
 }
 
 - (instancetype)initWithText:(NSString *)text configuration:(MXRMessageTextConfiguration *)configuration cornersToApplyMaxRadius:(UIRectCorner)cornersHavingRadius {
@@ -29,7 +35,8 @@
         _textNode.layerBacked = YES;
         NSMutableAttributedString* attributedText = [[NSMutableAttributedString alloc] initWithString:(text ? : @"") attributes:_configuration.textAttributes];
         if (_configuration.isLinkDetectionEnabled && _configuration.linkAttributes && text.length > 0) {
-            [MXRMessageTextNode applyAttributes:_configuration.linkAttributes toLinksInMutableAttributedString:attributedText];
+            NSArray* links = [MXRMessageTextNode applyAttributes:_configuration.linkAttributes toLinksInMutableAttributedString:attributedText];
+            _hasLinks = links.count > 0;
         }
         _textNode.attributedText = attributedText;
         _backgroundImageNode = [[ASImageNode alloc] init];
@@ -64,7 +71,42 @@
 
 #pragma mark - MXRMessageContentNode
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if (_hasLinks) {
+        _isTouchingURL = [self urlTouched:touches] != nil;
+    }
+    [super touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    _isTouchingURL = NO;
+    [super touchesCancelled:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if (!_isTouchingURL) {
+        [super touchesEnded:touches withEvent:event];
+        return;
+    }
+    _isTouchingURL = NO;
+    NSURL* url = [self urlTouched:touches];
+    if (url) {
+        if (_delegateImplementsTapURL) {
+            [self.delegate messageContentNode:self didTapURL:url];
+        } else {
+            [[UIApplication sharedApplication] openURL:url];
+        }
+    }
+}
+
 - (void)setHighlighted:(BOOL)highlighted {
+    if (_isTouchingURL) {
+        return;
+    }
     BOOL didChange = highlighted != self.highlighted;
     [super setHighlighted:highlighted];
     if (didChange) {
@@ -74,6 +116,11 @@
             [self redrawBubbleImageWithColor:_configuration.backgroundColor];
         }
     }
+}
+
+- (void)setDelegate:(id<MXRMessageContentNodeDelegate>)delegate {
+    [super setDelegate:delegate];
+    _delegateImplementsTapURL = [delegate respondsToSelector:@selector(messageContentNode:didTapURL:)];
 }
 
 - (void)copy:(id)sender {
@@ -86,15 +133,29 @@
     [self redrawBubble];
 }
 
-+ (NSAttributedString*)applyAttributes:(NSDictionary*)attributes toLinksInMutableAttributedString:(NSMutableAttributedString*)attributedString {
+- (NSURL*)urlTouched:(NSSet<UITouch *> *)touches {
+    CGPoint pointInTextNode = [self convertPoint:[[touches anyObject] locationInView:self.view] toNode:_textNode];
+    NSRange range = NSMakeRange(0, 0);
+    id linkAttributeValue = [_textNode linkAttributeValueAtPoint:pointInTextNode attributeName:NULL range:&range];
+    if (range.length == 0 || ![linkAttributeValue isKindOfClass:[NSURL class]]) {
+        return nil;
+    }
+    return linkAttributeValue;
+}
+
+#pragma mark - Helper
+
++ (NSArray*)applyAttributes:(NSDictionary*)attributes toLinksInMutableAttributedString:(NSMutableAttributedString*)attributedString {
     NSString* text = attributedString.string;
     NSDataDetector *linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
     NSArray <NSTextCheckingResult*>*matches = [linkDetector matchesInString:text options:0 range:NSMakeRange(0, text.length)];
     for (NSTextCheckingResult* match in matches) {
-        if (match.range.location == NSNotFound) continue;
-        [attributedString addAttributes:attributes range:match.range];
+        if (match.range.location == NSNotFound || !match.URL) continue;
+        NSMutableDictionary* linkAttrs = [[NSMutableDictionary alloc] initWithDictionary:attributes];
+        linkAttrs[NSLinkAttributeName] = match.URL;
+        [attributedString addAttributes:linkAttrs range:match.range];
     }
-    return attributedString;
+    return matches;
 }
 
 @end
@@ -125,6 +186,7 @@
         _isLinkDetectionEnabled = YES;
         NSMutableDictionary* linkAttributes = [[NSMutableDictionary alloc] initWithDictionary:(_textAttributes ? : @{})];
         linkAttributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
+        linkAttributes[NSUnderlineColorAttributeName] = attributes[NSForegroundColorAttributeName];
         _linkAttributes = [linkAttributes copy];
     }
     return self;

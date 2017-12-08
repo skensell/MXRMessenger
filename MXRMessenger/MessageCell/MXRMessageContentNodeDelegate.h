@@ -19,6 +19,7 @@
 - (void)messageContentNode:(MXRMessageContentNode*)node didSingleTap:(id)sender;
 - (void)messageContentNode:(MXRMessageContentNode*)node didLongTap:(id)sender;
 - (void)messageContentNode:(MXRMessageContentNode*)node didTapMenuItemWithType:(MXRMessageMenuItemTypes)menuItemType;
+- (void)messageContentNode:(MXRMessageContentNode*)node didTapURL:(NSURL*)url;
 
 @end
 

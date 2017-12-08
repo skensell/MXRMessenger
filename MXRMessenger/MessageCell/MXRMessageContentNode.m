@@ -8,9 +8,9 @@
 
 #import "MXRMessageContentNode.h"
 
-@implementation MXRMessageContentNode {
-    NSTimeInterval _touchStartTimestamp;
-}
+#import "MXRMessageContentNode+Subclasses.h"
+
+@implementation MXRMessageContentNode
 
 - (instancetype)initWithConfiguration:(MXRMessageNodeConfiguration *)configuration {
     self = [super init];
@@ -77,6 +77,9 @@
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     self.highlighted = NO;
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
