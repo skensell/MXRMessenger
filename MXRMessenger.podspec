@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MXRMessenger'
-  s.version          = '0.1.3'
+  s.version          = '0.2.0'
   s.summary          = 'MXRMessenger is a lightweight UI chat component built on top of Texture.'
 
   s.description      = <<-DESC
