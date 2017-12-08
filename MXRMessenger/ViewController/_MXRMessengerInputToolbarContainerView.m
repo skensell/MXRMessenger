@@ -31,6 +31,12 @@ static NSString* MXRNewCalculatedSizeNotification = @"MXRNewCalculatedSizeNotifi
         _containerNode.frame = CGRectMake(0, 0, _containerNode.calculatedSize.width, _containerNode.calculatedSize.height);
         self.frame = _containerNode.frame;
         self.autoresizingMask = UIViewAutoresizingFlexibleHeight; // NOTE: Do not set flexibleHeight on Node too, creates bugs.
+        
+        CALayer* iphoneXHackyLayer = [[CALayer alloc] init];
+        iphoneXHackyLayer.backgroundColor = [toolbarNode.backgroundColor CGColor];
+        iphoneXHackyLayer.frame = CGRectMake(0, 0, self.frame.size.width, 10*self.frame.size.height);
+        [self.layer addSublayer:iphoneXHackyLayer];
+        
         [self addSubview:_containerNode.view];
         
         __weak typeof(self) weakSelf = self;
@@ -39,6 +45,16 @@ static NSString* MXRNewCalculatedSizeNotification = @"MXRNewCalculatedSizeNotifi
         }];
     }
     return self;
+}
+
+- (void)didMoveToWindow {
+    [super didMoveToWindow];
+    if (@available(iOS 11, *)) {
+        NSLayoutYAxisAnchor* systemBottomAnchor = self.window.safeAreaLayoutGuide.bottomAnchor;
+        if (systemBottomAnchor) {
+            [self.bottomAnchor constraintLessThanOrEqualToSystemSpacingBelowAnchor:systemBottomAnchor multiplier:1.0f].active = YES;
+        }
+    }
 }
 
 - (void)dealloc { [[NSNotificationCenter defaultCenter] removeObserver:_newSizeNotification]; }

@@ -59,10 +59,6 @@
         _rightButtonsNode = _defaultSendButton;
         
         _finalInsets = UIEdgeInsetsMake(8, 0, 10, 0);
-        BOOL isIphoneXPortrait = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && fabs(([UIScreen mainScreen].bounds.size.height - 812)) < 2; // assumes this init is called on main thread
-        if (isIphoneXPortrait) {
-            _finalInsets.bottom = 34.0f; // can parameterize later
-        }
     }
     return self;
 }
