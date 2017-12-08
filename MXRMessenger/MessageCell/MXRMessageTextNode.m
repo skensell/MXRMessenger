@@ -21,6 +21,8 @@
     UIRectCorner _cornersHavingRadius;
     
     BOOL _delegateImplementsTapURL;
+    BOOL _delegateImplementsLongTapURL;
+    
     BOOL _hasLinks;
     BOOL _isTouchingURL;
 }
@@ -108,7 +110,10 @@
     [_textNode setHighlightRange:NSMakeRange(0, 0) animated:NO];
     NSURL* url = [self urlTouched:touches performHighlight:NO];
     if (url) {
-        if (_delegateImplementsTapURL) {
+        CGFloat duration = event.timestamp - self.touchStartTimestamp;
+        if (duration > 0.35f && _delegateImplementsLongTapURL) {
+            [self.delegate messageContentNode:self didLongTapURL:url];
+        } else if (_delegateImplementsTapURL) {
             [self.delegate messageContentNode:self didTapURL:url];
         } else {
             [[UIApplication sharedApplication] openURL:url];
@@ -134,6 +139,7 @@
 - (void)setDelegate:(id<MXRMessageContentNodeDelegate>)delegate {
     [super setDelegate:delegate];
     _delegateImplementsTapURL = [delegate respondsToSelector:@selector(messageContentNode:didTapURL:)];
+    _delegateImplementsLongTapURL = [delegate respondsToSelector:@selector(messageContentNode:didLongTapURL:)];
 }
 
 - (void)copy:(id)sender {
