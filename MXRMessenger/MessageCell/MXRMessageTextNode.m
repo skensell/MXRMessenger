@@ -10,6 +10,7 @@
 
 #import "UIImage+MXRMessenger.h"
 #import "UIColor+MXRMessenger.h"
+#import "MXRMessageContentNode+Subclasses.h"
 
 @interface MXRMessageTextNode () <ASTextNodeDelegate>
 
@@ -61,6 +62,14 @@
     return [ASBackgroundLayoutSpec backgroundLayoutSpecWithChild:textInset background:_backgroundImageNode];
 }
 
+- (void)didLoad {
+    [super didLoad];
+    if (_hasLinks) {
+        _textNode.highlightStyle = ASTextNodeHighlightStyleDark;
+        [_textNode.layer as_setAllowsHighlightDrawing:YES];
+    }
+}
+
 - (void)redrawBubble {
     [self redrawBubbleImageWithColor:_configuration.backgroundColor];
 }
@@ -73,12 +82,15 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (_hasLinks) {
-        _isTouchingURL = [self urlTouched:touches] != nil;
+        _isTouchingURL = [self urlTouched:touches performHighlight:YES] != nil;
     }
     [super touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if (_isTouchingURL) {
+        [_textNode setHighlightRange:NSMakeRange(0, 0) animated:NO];
+    }
     _isTouchingURL = NO;
     [super touchesCancelled:touches withEvent:event];
 }
@@ -93,7 +105,8 @@
         return;
     }
     _isTouchingURL = NO;
-    NSURL* url = [self urlTouched:touches];
+    [_textNode setHighlightRange:NSMakeRange(0, 0) animated:NO];
+    NSURL* url = [self urlTouched:touches performHighlight:NO];
     if (url) {
         if (_delegateImplementsTapURL) {
             [self.delegate messageContentNode:self didTapURL:url];
@@ -133,12 +146,15 @@
     [self redrawBubble];
 }
 
-- (NSURL*)urlTouched:(NSSet<UITouch *> *)touches {
+- (NSURL*)urlTouched:(NSSet<UITouch *> *)touches performHighlight:(BOOL)highlight {
     CGPoint pointInTextNode = [self convertPoint:[[touches anyObject] locationInView:self.view] toNode:_textNode];
     NSRange range = NSMakeRange(0, 0);
     id linkAttributeValue = [_textNode linkAttributeValueAtPoint:pointInTextNode attributeName:NULL range:&range];
     if (range.length == 0 || ![linkAttributeValue isKindOfClass:[NSURL class]]) {
         return nil;
+    }
+    if (highlight) {
+        [_textNode setHighlightRange:range animated:NO];
     }
     return linkAttributeValue;
 }
