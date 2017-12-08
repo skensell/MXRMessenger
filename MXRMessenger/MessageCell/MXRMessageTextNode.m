@@ -27,7 +27,11 @@
         
         _textNode = [[ASTextNode alloc] init];
         _textNode.layerBacked = YES;
-        _textNode.attributedText = [[NSAttributedString alloc] initWithString:(text ? : @"") attributes:_configuration.textAttributes];
+        NSMutableAttributedString* attributedText = [[NSMutableAttributedString alloc] initWithString:(text ? : @"") attributes:_configuration.textAttributes];
+        if (_configuration.isLinkDetectionEnabled && _configuration.linkAttributes && text.length > 0) {
+            [MXRMessageTextNode applyAttributes:_configuration.linkAttributes toLinksInMutableAttributedString:attributedText];
+        }
+        _textNode.attributedText = attributedText;
         _backgroundImageNode = [[ASImageNode alloc] init];
         _backgroundImageNode.layerBacked = YES;
         [self redrawBubble];
@@ -82,10 +86,29 @@
     [self redrawBubble];
 }
 
++ (NSAttributedString*)applyAttributes:(NSDictionary*)attributes toLinksInMutableAttributedString:(NSMutableAttributedString*)attributedString {
+    NSString* text = attributedString.string;
+    NSDataDetector *linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
+    NSArray <NSTextCheckingResult*>*matches = [linkDetector matchesInString:text options:0 range:NSMakeRange(0, text.length)];
+    for (NSTextCheckingResult* match in matches) {
+        if (match.range.location == NSNotFound) continue;
+        [attributedString addAttributes:attributes range:match.range];
+    }
+    return attributedString;
+}
+
 @end
 
 
 @implementation MXRMessageTextConfiguration
+
+- (instancetype)init {
+    return [self initWithFont:[UIFont systemFontOfSize:15] textColor:[UIColor blackColor] backgroundColor:[UIColor mxr_bubbleLightGrayColor]];
+}
+
+- (instancetype)initWithFont:(UIFont *)font textColor:(UIColor *)textColor backgroundColor:(UIColor *)backgroundColor {
+    return [self initWithTextAttributes:@{NSFontAttributeName: (font ? : [UIFont systemFontOfSize:15]), NSForegroundColorAttributeName: (textColor ? : [UIColor blackColor])} backgroundColor:backgroundColor];
+}
 
 - (instancetype)initWithTextAttributes:(NSDictionary *)attributes backgroundColor:(UIColor *)backgroundColor {
     self = [super init];
@@ -99,16 +122,12 @@
         _textAttributes = [attrsMutable copy];
         _textInset = UIEdgeInsetsMake(8, 12, 8, 12);
         [self setTextInset:UIEdgeInsetsMake(8, 12, 8, 12) adjustMaxCornerRadiusToKeepCircular:YES];
+        _isLinkDetectionEnabled = YES;
+        NSMutableDictionary* linkAttributes = [[NSMutableDictionary alloc] initWithDictionary:(_textAttributes ? : @{})];
+        linkAttributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
+        _linkAttributes = [linkAttributes copy];
     }
     return self;
-}
-
-- (instancetype)initWithFont:(UIFont *)font textColor:(UIColor *)textColor backgroundColor:(UIColor *)backgroundColor {
-    return [self initWithTextAttributes:@{NSFontAttributeName: (font ? : [UIFont systemFontOfSize:15]), NSForegroundColorAttributeName: (textColor ? : [UIColor blackColor])} backgroundColor:backgroundColor];
-}
-
-- (instancetype)init {
-    return [self initWithFont:[UIFont systemFontOfSize:15] textColor:[UIColor blackColor] backgroundColor:[UIColor mxr_bubbleLightGrayColor]];
 }
 
 - (void)setTextInset:(UIEdgeInsets)textInset {

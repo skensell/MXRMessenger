@@ -25,12 +25,15 @@
 
 @interface MXRMessageTextConfiguration : MXRMessageNodeConfiguration
 
-@property (nonatomic, assign) UIEdgeInsets textInset;
+@property (nonatomic, assign) UIEdgeInsets textInset; // Default: 8,12,8,12
 - (void)setTextInset:(UIEdgeInsets)textInset adjustMaxCornerRadiusToKeepCircular:(BOOL)adjustMaxCornerRadius;
 
 @property (nonatomic, strong, readonly) NSDictionary* textAttributes;
 
-- (instancetype)initWithTextAttributes:(NSDictionary*)attributes backgroundColor:(UIColor*)backgroundColor;
+@property (nonatomic, assign) BOOL isLinkDetectionEnabled; // Default: YES
+@property (nonatomic, strong) NSDictionary* linkAttributes; // Default: underlined
+
 - (instancetype)initWithFont:(UIFont*)font textColor:(UIColor*)textColor backgroundColor:(UIColor*)backgroundColor;
+- (instancetype)initWithTextAttributes:(NSDictionary*)attributes backgroundColor:(UIColor*)backgroundColor;
 
 @end

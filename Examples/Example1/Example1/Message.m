@@ -15,6 +15,7 @@
 + (instancetype)randomMessage {
     static dispatch_once_t onceToken;
     static NSArray* texts = nil;
+    static NSArray* linkTexts = nil;
     static NSArray* photoCategories = nil;
     dispatch_once(&onceToken, ^{
         texts = @[@"You ever have the feeling that you're not sure if you're awake or still dreaming?",
@@ -46,6 +47,13 @@
                   @"Morpheus?",
                   @"Yes...I've been looking for you, Neo. I don't know if you're ready to see what I want to show you, but unfortunately you and I have run out of time. They're coming for you, Neo, and I don't know what they're going to do.",
                   ];
+        linkTexts = @[@"Hey, here's that link to google: http://www.google.com. It's just the search engine.",
+                      @"Here's a long link to Mount hood: https://www.google.com/maps/place/Mt+Hood/@45.3736131,-121.704706,15z/data=!4m5!3m4!1s0x54be1c5501719a05:0x831d76c0b7aea9ea!8m2!3d45.373615!4d-121.6959511 and a little text after it.",
+                      @"facebook.com",
+                      @"www.facebook.com",
+                      @"https://www.nytimes.com/2017/12/06/upshot/what-happened-to-the-american-boomtown.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=second-column-region&region=top-news&WT.nav=top-news is a nytimes article. You should check it out.",
+                      @"Check out that NYTimes article again: https://www.nytimes.com/2017/12/06/upshot/what-happened-to-the-american-boomtown.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=second-column-region&region=top-news&WT.nav=top-news",
+                      @"Check out facebook.com and http://www.google.com and https://www.instagram.com"];
         photoCategories = @[@"abstract", @"city", @"people", @"transport", @"animals", @"food", @"nature", @"business", @"nightlife", @"sports", @"cats", @"fashion", @"technics"];
     });
     Message* m = [[Message alloc] init];
@@ -60,6 +68,7 @@
         }
         m.media = media;
     } else {
+//        m.text = linkTexts[arc4random_uniform((uint32_t)linkTexts.count)];
         m.text = texts[arc4random_uniform((uint32_t)texts.count)];
     }
     return m;
