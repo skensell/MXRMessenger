@@ -32,6 +32,7 @@
 
 @property (nonatomic, assign) BOOL isLinkDetectionEnabled; // Default: YES
 @property (nonatomic, strong) NSDictionary* linkAttributes; // Default: underlined
+@property (nonatomic, assign) ASTextNodeHighlightStyle linkHighlightStyle; // while touching a link
 
 - (instancetype)initWithFont:(UIFont*)font textColor:(UIColor*)textColor backgroundColor:(UIColor*)backgroundColor;
 - (instancetype)initWithTextAttributes:(NSDictionary*)attributes backgroundColor:(UIColor*)backgroundColor;

@@ -38,6 +38,7 @@
         if (_configuration.isLinkDetectionEnabled && _configuration.linkAttributes && text.length > 0) {
             NSArray* links = [MXRMessageTextNode applyAttributes:_configuration.linkAttributes toLinksInMutableAttributedString:attributedText];
             _hasLinks = links.count > 0;
+            _textNode.highlightStyle = _configuration.linkHighlightStyle;
         }
         _textNode.attributedText = attributedText;
         _backgroundImageNode = [[ASImageNode alloc] init];
@@ -65,7 +66,6 @@
 - (void)didLoad {
     [super didLoad];
     if (_hasLinks) {
-        _textNode.highlightStyle = ASTextNodeHighlightStyleDark;
         [_textNode.layer as_setAllowsHighlightDrawing:YES];
     }
 }
@@ -204,6 +204,7 @@
         linkAttributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
         linkAttributes[NSUnderlineColorAttributeName] = attributes[NSForegroundColorAttributeName];
         _linkAttributes = [linkAttributes copy];
+        _linkHighlightStyle = ASTextNodeHighlightStyleDark;
     }
     return self;
 }
