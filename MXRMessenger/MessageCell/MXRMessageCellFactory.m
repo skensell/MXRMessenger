@@ -111,6 +111,7 @@ static inline BOOL MXRMessageContextNextShowsDate(MXRMessageContext c) { return 
                 avatarNode.imageModificationBlock = [UIImage mxr_imageModificationBlockToScaleToSize:avatarConfig.size cornerRadius:avatarConfig.cornerRadius];
             }
             avatarNode.URL = avatarURL;
+            avatarNode.hidden = MXRMessageContextNextHasSameSender(context);
             cell.avatarNode = avatarNode;
         }
         
@@ -268,6 +269,9 @@ static inline BOOL MXRMessageContextNextShowsDate(MXRMessageContext c) { return 
     __block MXRMessageContext context; __block MXRMessageContext previousContext; __block MXRMessageContext nextContext;
     [self setContext:&context previous:&previousContext next:&nextContext avatarURL:NULL tableNode:tableNode row:indexPath.row];
     [cellNode.messageContentNode redrawBubbleWithCorners:context.cornersHavingRadius];
+    if (MXRMessageContextNextHasSameSender(context)) {
+        cellNode.avatarNode.hidden = YES;
+    }
 }
 
 @end
