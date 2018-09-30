@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) NSDictionary *dateTextAttributes; // for the date portion
 @property (nonatomic, strong) NSDictionary *timeTextAttributes; // for the time portion
+@property (nonatomic, strong) NSDateFormatter* timestampFormatter; // for the time formatter portion
 
 @end
 

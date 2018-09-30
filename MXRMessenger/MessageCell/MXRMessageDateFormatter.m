@@ -14,7 +14,6 @@
     NSDateFormatter* _dateFormatter;
     NSDateFormatter* _todayOrYesterdayFormatter;
     NSDateFormatter* _thisWeekFormatter;
-    NSDateFormatter* _timestampFormatter;
 }
 
 - (instancetype)init {
